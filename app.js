@@ -32,7 +32,7 @@ app.post("/", function(req, res){
   }
 
   const jsonData = JSON.stringify(data);
-  const url ="https://us21.api.mailchimp.com/3.0/lists/"+ process.env.LIST_ID+ "";
+  const url =process.env.URL;
   const options = {
     method: "POST",
     auth: "doe:" + process.env.NEWSLETTER_API_KEY
