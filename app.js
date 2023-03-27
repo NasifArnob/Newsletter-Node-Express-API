@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 const app = express();
 
@@ -30,10 +32,10 @@ app.post("/", function(req, res){
   }
 
   const jsonData = JSON.stringify(data);
-  const url ="https://us21.api.mailchimp.com/3.0/lists/8339ba7b6a";
+  const url ="https://"+process.env.SERVER_ID +".api.mailchimp.com/3.0/lists/"+ process.env.LIST_ID+ "";
   const options = {
     method: "POST",
-    auth: "key:838c1cf70b1c98bd779431ff45144997-us21"
+    auth: "doe:" + process.env.NEWSLETTER_API_KEY
   }
   const request = https.request(url, options, function(response){
     if(response.statusCode === 200){
@@ -52,11 +54,8 @@ app.post("/", function(req, res){
   request.end();
 
 });
-//api key
-//838c1cf70b1c98bd779431ff45144997-us21
 
-//list id
-//8339ba7b6a
+
 app.post("/failure", function(req, res){
   res.redirect("/")
 })
